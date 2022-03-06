@@ -1,6 +1,6 @@
-const { Model, DataTypes } = require('sequelize');
-const sequelize = require('../config/connection');
-
+const { Model, DataTypes } = require("sequelize");
+const sequelize = require("../config/connection");
+const bcrypt = require("bcrypt");
 
 class User extends Model {}
 
@@ -8,36 +8,47 @@ class User extends Model {}
 User.init(
   {
     id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        primaryKey: true,
-        autoIncrement: true
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true,
+      autoIncrement: true,
     },
     username: {
-        type: DataTypes.STRING,
-        allowNull: false
+      type: DataTypes.STRING,
+      allowNull: false,
     },
     email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: true,
-        validate: {
-            isEmail: true
-        }
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        isEmail: true,
+      },
     },
     password: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            len: [5]
-        }
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [5],
+      },
     },
-
-    
-
-},
+  },
   {
-    // TABLE CONFIGURATION OPTIONS GO HERE (https://sequelize.org/v5/manual/models-definition.html#configuration))
+    hooks: {
+      // set up beforeCreate lifecycle "hook" functionality
+      async beforeCreate(newUserData) {
+        newUserData.password = await bcrypt.hash(newUserData.password, 10);
+        return newUserData;
+      },
+    },
+    // set up beforeUpdate lifecycle "hook" functionality
+    async beforeUpdate(updatedUserData) {
+      updatedUserData.password = await bcrypt.hash(
+        updatedUserData.password,
+        10
+      );
+      return updatedUserData;
+    },
 
     // pass in our imported sequelize connection (the direct connection to our database)
     sequelize,
@@ -48,7 +59,7 @@ User.init(
     // use underscores instead of camel-casing (i.e. `comment_text` and not `commentText`)
     underscored: true,
     // make it so our model name stays lowercase in the database
-    modelName: 'user'
+    modelName: "user",
   }
 );
 
