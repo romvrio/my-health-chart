@@ -1,0 +1,42 @@
+[
+    {
+        "test": "Screening lung CT",
+        "Date performed": "",
+        "Results": "",
+        "Follow-up": "",
+        "Management": "",
+        "Comment": ""
+    },
+    {
+        "test": "Mammography",
+        "Date performed": "",
+        "Results": "",
+        "Follow-up": "",
+        "Management": "",
+        "Comment": ""
+    },
+    {
+        "test": "Coronary Calcium scoring",
+        "Date performed": "",
+        "Results": "",
+        "Follow-up": "",
+        "Management": "",
+        "Comment": ""
+    },
+    {
+        "test": "Colonoscopy",
+        "Date performed": "",
+        "Results": "",
+        "Follow-up": "",
+        "Management": "",
+        "Comment": ""
+    },
+    {
+        "test": "Blood Cholesterol",
+        "Date performed": "",
+        "Results": "",
+        "Follow-up": "",
+        "Management": "",
+        "Comment": ""
+    }
+]
