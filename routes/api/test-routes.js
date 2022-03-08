@@ -2,6 +2,7 @@ const router = require("express").Router();
 const { User, Test, Comment } = require("../../models");
 const sequalize = require('../config/connection');
 const withAuth = require('../../utils/auth');
+const { post } = require("./user-routes");
 
 // GET /api/tests
 router.get("/", (req, res) => {
@@ -111,3 +112,25 @@ router.put('/', withAuth, (req, res) => {
         res.status(500).json(err);
       });
 });
+
+// Delete a test
+router.delete('/:id', withAuth, (req, res) => {
+    Test.destroy({
+        where: {
+            id: req.params.id
+        }
+    })
+      .then(dbTestData => {
+          if (!dbTestData) {
+              res.status(404).json({ message: 'No test found with this id' });
+              return;
+          }
+          res.json(dbTestData);
+    })
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
+module.exports = router;
