@@ -2,21 +2,22 @@ const router = require("express").Router();
 const { User, Test, Comment } = require("../../models");
 const sequalize = require('../config/connection');
 const withAuth = require('../../utils/auth');
-const { post } = require("./user-routes");
+
 
 // GET /api/tests
 router.get("/", (req, res) => {
     Test.findAll({
         attributes: [
             'id', 
-            'title', 
+            'title',
+            'created_at', 
             'test_content'
         ],
         order: [['created_at', 'DESC']],
         include: [
           {
               model: Comment,
-              attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+              attributes: ['id', 'comment_text', 'test_id', 'user_id', 'created_at'],
               include: {
                   model:User,
                   attributes: ['username']
@@ -28,7 +29,7 @@ router.get("/", (req, res) => {
           }
         ]
     })
-        .then((dbUserData) => res.json(dbUserData))
+        .then((dbTestData) => res.json(dbTestData))
         .catch((err) => {
             console.log(err);
             res.status(500).json(err);
@@ -43,9 +44,9 @@ router.get("/:id", (req, res) => {
         },
         attributes: [
             'id', 
-            'title', 
-            'Test_content',
-            'created_at'
+            'title',
+            'created_at', 
+            'test_content'
         ],
         include: [
             {
