@@ -77,6 +77,37 @@ router.get("/:id", (req, res) => {
 // create/Pick a test
 router.post('/', withAuth, (req, res) => {
     Test.create({
-        
+        title: req.body.title,
+        test_content: req.body.test_content,
+        user_id: req.session.user_id
     })
-})
+      .then(dbTestData => res.json(dbTestData))
+      .catch(err => {
+          console.log(err);
+          res.status(500).json(err);
+      });
+});
+
+// update a test
+router.put('/', withAuth, (req, res) => {
+    Test.update({
+        title: req.body.title,
+        test_content: req.body.test_content,
+    },
+    {
+        where: {
+            id: req.params.id
+        }
+    })
+    .then(dbTestData => {
+        if (!dbTestData) {
+            res.status(404).json({ message: 'No test found with this id' });
+            return;
+        }
+        res.json(dbTestData);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+});
