@@ -1,5 +1,7 @@
 const router = require("express").Router();
-const { ScreenTest, User } = require("../../models");
+const { User, Test, Comment } = require("../../models");
+const sequalize = require('../config/connection');
+const withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get("/", (req, res) => {
