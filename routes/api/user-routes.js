@@ -1,5 +1,6 @@
 const router = require("express").Router();
-const { User } = require("../../models");
+const { User, Test, Comment } = require("../../models");
+const withAuth = require('../../utils/auth');
 
 // GET /api/users
 router.get("/", (req, res) => {
@@ -19,7 +20,21 @@ router.get("/:id", (req, res) => {
         attributes: { exclude: ['password'] },
         where: {
             id: req.params.id
-        }
+        },
+        include: [
+            {
+                model: Test,
+                attributes: ['id', 'title', 'test_content', 'created_at']
+            },
+            {
+                model: Comment,
+                attributes: ['id', 'comment_text', 'created_at'],
+                include: {
+                    model: Test,
+                    attributes: ['title']
+                }
+            }
+        ]
     })
     .then(dbUserData => {
         if (!dbUserData) {
@@ -38,7 +53,7 @@ router.get("/:id", (req, res) => {
 router.post("/", (req, res) => {
     User.create({
         username: req.body.username,
-        email: req.body.email,
+        
         password: req.body.password
     })
     .then(dbUserData => {
@@ -56,14 +71,17 @@ router.post("/", (req, res) => {
     });
 });
 
+
+// LogIn Route
+
 router.post('/login', (req, res) => {
     User.findOne({
         where: {
-            email: req.body.email
+            username: req.body.username
         }
     }).then(dbUserData => {
         if (!dbUserData) {
-            res.status(400).json({ message: 'No user with that email address!' });
+            res.status(400).json({ message: 'No user with that username!' });
             return;
         }
 
@@ -84,8 +102,19 @@ router.post('/login', (req, res) => {
     });
 });
 
-// PUT /api/users/1
-router.put("/:id", (req, res) => {
+router.post('/logout', (req, res) => {
+    if (req.session.loggedIn) {
+        req.session.destroy(() => {
+            res.status(204).end();
+        });
+    }
+    else {
+      res.status(404).end();
+    }
+});
+
+// PUT/Update/api/users/1
+router.put("/:id", withAuth, (req, res) => {
     User.update(req.body, {
         individualHooks: true,
         where: {
@@ -106,7 +135,7 @@ router.put("/:id", (req, res) => {
 });
 
 // DELETE /api/users/1
-router.delete("/:id", (req, res) => {
+router.delete("/:id", withAuth, (req, res) => {
     User.destroy({
         where: {
             id: req.params.id

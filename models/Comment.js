@@ -10,24 +10,24 @@ Comment.init(
         primaryKey: true,
         allowNull: false,
         autoIncrement: true
-      },
-      user_id: {
+    },
+    user_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'user',
           key: 'id'
         }
-      },
-      test_id: {
+    },
+    test_id: {
         type: DataTypes.INTEGER,
         allowNull: false,
         references: {
           model: 'test',
           key: 'id'
         }
-      },
-      comment_text: {
+    },
+    comment_text: {
         type: DataTypes.STRING,
         allowNull: false,
         validate: {
@@ -35,6 +35,7 @@ Comment.init(
         }
       }
   },
+  
   {
     sequelize,
     freezeTableName: true,

@@ -25,5 +25,9 @@
     "express-session": "^1.17.2",
     "mysql2": "^2.3.3",
     "sequelize": "^6.17.0"
-  }
+  },
+  "directories": {
+    "test": "test"
+  },
+  "keywords": []
 }
