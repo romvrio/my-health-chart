@@ -1,4 +1,39 @@
 const User = require('./User');
-const ScreenTest = require('./Test');
+const Test = require('./Test');
+const Comment = require('./Comment');
 
-module.exports = { User, ScreenTest };
+
+//create associations
+
+User.hasMany(Test, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Test.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+
+Comment.belongsTo(User, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+  });
+  
+Comment.belongsTo(Test, {
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
+});
+  
+User.hasMany(Comment, {
+    foreignKey: 'user_id',
+    onDelete: 'CASCADE'
+});
+  
+Test.hasMany(Comment, {
+    foreignKey: 'post_id',
+    onDelete: 'CASCADE'
+
+});
+
+module.exports = {User, Test, Comment};
