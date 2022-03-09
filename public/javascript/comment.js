@@ -12,6 +12,16 @@ async function editFormHandler(event) {
                 test_id,
                 comment_text
             }),
-        })
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        if (response.ok) {
+            document.location.reload();
+        } else {
+            alert(response.statusText);
+        }
     }
 }
+
+document.querySelector('comment-form').addEventListener('submit', commentFormHandler);
