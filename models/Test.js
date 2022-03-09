@@ -1,9 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
 const sequelize = require('../config/connection');
 
-class ScreenTest extends Model {}
+class Test extends Model {}
 
-ScreenTest.init(
+Test.init(
     {
       id: {
         type: DataTypes.INTEGER,
@@ -15,12 +15,9 @@ ScreenTest.init(
         type: DataTypes.STRING,
         allowNull: false
       },
-      screenTest_url: {
+      test_content: {
         type: DataTypes.STRING,
         allowNull: false,
-        validate: {
-          isURL: true
-        }
       },
       user_id: {
         type: DataTypes.INTEGER,
@@ -34,9 +31,9 @@ ScreenTest.init(
       sequelize,
       freezeTableName: true,
       underscored: true,
-      modelName: 'screenTest'
+      modelName: 'test'
     }
   );
 
 
-  module.exports = ScreenTest;  
+  module.exports = Test;  
