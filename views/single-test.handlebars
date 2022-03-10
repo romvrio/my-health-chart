@@ -1,0 +1,20 @@
+{{> test-info test}}
+{{#if loggedIn}}
+<form class="comment-form">
+    <div>
+        <textarea name="comment-body" class="ml-5">
+
+        </textarea>
+    </div>
+    <div>
+        <button class="button is-warning ml-5 mb-5" type="submit">
+            Add Comment
+        </button>
+    </div>
+</form>
+{{/if}}
+
+{{> comments test.comments}}
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}
