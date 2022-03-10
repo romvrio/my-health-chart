@@ -91,10 +91,10 @@ router.post('/', withAuth, (req, res) => {
 });
 
 // update a test
-router.put('/', withAuth, (req, res) => {
+router.put('/:id', withAuth, (req, res) => {
     Test.update({
         title: req.body.title,
-        test_content: req.body.test_content,
+        test_content: req.body.test_content
     },
     {
         where: {

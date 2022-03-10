@@ -74,6 +74,7 @@
     margin: 0 auto;
     display: flex;
     flex-direction: column;
+    background-color: #e9e0d5;
   }
   
   header {
@@ -82,6 +83,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
+    background-color: #9bddef;
   }
   
   /*header h1 {
@@ -187,4 +189,8 @@
   .rows{
     display:flex;
     flex-direction: column;
+  }
+
+  .navbar{
+    background-color: #9bddef !important;
   }
