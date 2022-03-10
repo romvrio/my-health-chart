@@ -25,7 +25,9 @@
 
 
  # Screenshots
+   ![ScreenshotAllRoutes](https://user-images.githubusercontent.com/92233527/157668875-416988d5-e69e-4ef5-9946-34a5b5ffdd6e.png)
 
+   ![ScreenshotHomePage](https://user-images.githubusercontent.com/92233527/157669080-a7b8b274-c9c4-4ba7-8ffb-bf0adb7ce8d9.png)
 
 
  # Installation
