@@ -78,9 +78,10 @@ router.get("/:id", (req, res) => {
 
 // create/Pick a test
 router.post('/', withAuth, (req, res) => {
+    console.log(req.body)
     Test.create({
         title: req.body.title,
-        test_content: req.body.test_content,
+        test_content: req.body.post_content,
         user_id: req.session.user_id
     })
       .then(dbTestData => res.json(dbTestData))
