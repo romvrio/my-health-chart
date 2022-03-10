@@ -12,3 +12,9 @@
         </button>
     </div>
 </form>
+{{/if}}
+
+{{> comments test.comments}}
+{{#if loggedIn}}
+<script src="/javascript/comment.js"></script>
+{{/if}}
