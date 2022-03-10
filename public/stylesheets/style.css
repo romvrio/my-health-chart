@@ -29,9 +29,13 @@
     padding: 1%;
     color: white;
     font-weight: bold;
-    transition: background-color .1s;
+    transition: background-color .2s;
     cursor: pointer;
     border-radius: 5px;
+  }
+
+  .button.is-primary {
+    background-color: #129581;
   }
   
   button:hover {
@@ -179,6 +183,7 @@
     justify-content: center;
     padding: 1%;
     font-size: 110%;
+    background-color: #ceebf3 !important;
   }
 
   .card {
