@@ -7,7 +7,7 @@
  https://github.com/romvrio/my-health-chart.git
 
  # Heroku Deployed Link
- 
+ https://myhealth-chart.herokuapp.com/
 
  # Video link
  
