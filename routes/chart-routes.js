@@ -58,7 +58,7 @@ router.get('/login', (req, res) => {
     res.render('signup');
   });
 
-  router.get('/test/:id', (req, res) => {
+  router.get('/charts/test/:id', (req, res) => {
     Test.findOne({
       where: {
         id: req.params.id
