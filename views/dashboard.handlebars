@@ -1,17 +1,20 @@
 <div class="mb-5 pt-3">
-    <a href="/dashboard/create/"><button id="create-test" class="button is-primary is-pulled-right">Create Test</button></a>
-    <h2 class="title pb-4">Dashboard: Your Tests</h2>
+    <a href="/dashboard/create/"><button id="create-test" class="button is-primary is-pulled-right">create
+            test</button></a>
+
+    <h2 class="title pb-4">dashboard: your tests</h2>
     <hr>
     {{#if tests.length}}
+
+
+    {{#each tests as |test|}}
+    {{> test-info test}}
+
+    <a href="/dashboard/edit/{{test.id}}"><button class="button mb-5 ml-5 is-warning">edit test</button></a>
+
+    {{/each}}
 </div>
-{{#each tests as |test|}}
-{{> test-info test}}
-<div>
-    
-    <a href="/dashboard/edit/{{test.id}}"><button class="button mb-5 ml-5 is-warning">Edit Test</button></a>
-   
-</div>
-{{/each}}
 {{else}}
-<h6 class="bb-4 has-text-center is-italic">You Do Not Currently Have Any Tests</h6>
+<h6 class="pb-4 has-text-centered is-italic">you do not currently have any tests</h6>
+
 {{/if}}

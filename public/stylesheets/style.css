@@ -35,7 +35,7 @@
   }
 
   .button.is-primary {
-    background-color: #129581;
+    background-color: #126458;
   }
   
   button:hover {
@@ -74,11 +74,13 @@
   .wrapper {
     width: 100%;
     min-height: 100%;
-    max-width: 1200px;
+    /*max-width: 1200px;*/
     margin: 0 auto;
     display: flex;
     flex-direction: column;
-    background-color: #e9e0d5;
+    /*background-color: #e9e0d5;*/
+    background-color: rgb(218, 243, 245);
+    background-image: none;
   }
   
   header {
@@ -87,7 +89,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 0 1%;
-    background-color: #9bddef;
+    background-color: #46cdf3;
   }
   
   /*header h1 {
@@ -197,5 +199,16 @@
   }
 
   .navbar{
-    background-color: #9bddef !important;
+    background-color: #46cdf3 !important;
+  }
+
+  .ScreenTest{
+    width: 900px;
+    margin: 0 auto 30px auto;
+    background: #46cdf3;
+    color: black;
+    overflow: auto;
+    justify-content: center;
+    border-radius: 10px;
+    font-size: medium;
   }
