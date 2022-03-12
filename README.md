@@ -42,7 +42,9 @@
  # Screenshots
    ![ScreenshotAllRoutes](https://user-images.githubusercontent.com/92233527/157668875-416988d5-e69e-4ef5-9946-34a5b5ffdd6e.png)
 
-   ![ScreenshotHomePage](https://user-images.githubusercontent.com/92233527/157669080-a7b8b274-c9c4-4ba7-8ffb-bf0adb7ce8d9.png)
+  ![ScreenshotFinalHome](https://user-images.githubusercontent.com/92233527/158035321-a26f7181-2082-4d6f-b6bf-c7091f8b6ed9.png)
+
+  ![ScreenshotFinal](https://user-images.githubusercontent.com/92233527/158035351-7ec20c26-d70b-4f63-ae1f-7353a699eeeb.png)
 
 
  # Installation
