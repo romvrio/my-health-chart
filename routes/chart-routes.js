@@ -8,7 +8,6 @@ router.get('/', (req, res) => {
     Test.findAll({
       attributes: [
         'id',
-        'test_url',
         'title',
         'created_at',
         'test_content'
@@ -66,7 +65,6 @@ router.get('/login', (req, res) => {
       },
       attributes: [
         'id',
-        'test_url',
         'title',
         'created_at',
         'test_content'
