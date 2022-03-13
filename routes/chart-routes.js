@@ -8,6 +8,7 @@ router.get('/', (req, res) => {
     Test.findAll({
       attributes: [
         'id',
+        'test_url',
         'title',
         'created_at',
         'test_content'
@@ -58,13 +59,14 @@ router.get('/login', (req, res) => {
     res.render('signup');
   });
 
-  router.get('/charts/test/:id', (req, res) => {
+  router.get('/test/:id', (req, res) => {
     Test.findOne({
       where: {
         id: req.params.id
       },
       attributes: [
         'id',
+        'test_url',
         'title',
         'created_at',
         'test_content'

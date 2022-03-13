@@ -203,7 +203,7 @@
   }
 
   .ScreenTest{
-    width: 900px;
+    width: 100%;
     margin: 0 auto 30px auto;
     background: #46cdf3;
     color: black;
@@ -211,4 +211,5 @@
     justify-content: center;
     border-radius: 10px;
     font-size: medium;
+    
   }
