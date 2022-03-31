@@ -1,138 +1,139 @@
-const router = require("express").Router();
-const { User, Test, Comment } = require("../../models");
-const sequalize = require('../../config/connection');
+const router = require('express').Router();
+const { Test, User, Comment } = require('../../models');
+const sequelize = require('../../config/connection');
 const withAuth = require('../../utils/auth');
 
-
-// GET /api/tests
-router.get("/", (req, res) => {
+// get all tests
+router.get('/', (req, res) => {
+    console.log('======================');
     Test.findAll({
         attributes: [
-            'id', 
+            'id',
             'title',
-            'created_at', 
+            'created_at',
             'test_content'
         ],
-        order: [['created_at', 'DESC']],
-        include: [
-          {
-              model: Comment,
-              attributes: ['id', 'comment_text', 'test_id', 'user_id', 'created_at'],
-              include: {
-                  model:User,
-                  attributes: ['username']
-              }
-          },
-          {
-              model: User,
-              attributes: ['username']
+      order: [['created_at', 'DESC']],
+      include: [
+        // Comment model here -- attached username to comment
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'test_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username']
           }
-        ]
-    })
-        .then((dbTestData) => res.json(dbTestData))
-        .catch((err) => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-// GET /api/tests/1
-router.get("/:id", (req, res) => {
-    Test.findOne({
-        where: {
-            id: req.params.id
         },
-        attributes: [
-            'id', 
-            'title',
-            'created_at', 
-            'test_content'
-        ],
-        include: [
-            {
-                model: User,
-                attributes: ['username']
-            },
-            {
-                model: Comment,
-                attributes: ['id', 'comment_text', 'test_id', 'user_id', 'created_at'],
-                include: {
-                    model: User,
-                    attributes: ['username']
-                }
-            }
-        ]
-    })
-        .then(dbTestData => {
-            if (!dbTestData) {
-                res.status(404).json({ message: 'No test found with this id ' });
-                return;
-            }
-            res.json(dbTestData);
-        })
-        .catch(err => {
-            console.log(err);
-            res.status(500).json(err);
-        });
-});
-
-// create/Pick a test
-router.post('/', withAuth, (req, res) => {
-    console.log(req.body)
-    Test.create({
-        title: req.body.title,
-        test_content: req.body.post_content,
-        user_id: req.session.user_id
+        {
+          model: User,
+          attributes: ['username']
+        },
+      ]
     })
       .then(dbTestData => res.json(dbTestData))
       .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
+        console.log(err);
+        res.status(500).json(err);
       });
-});
+  });
 
-// update a test
-router.put('/:id', withAuth, (req, res) => {
-    Test.update({
-        title: req.body.title,
-        test_content: req.body.test_content
-    },
-    {
-        where: {
-            id: req.params.id
+  router.get('/:id', (req, res) => {
+    Test.findOne({
+      where: {
+        id: req.params.id
+      },
+      attributes: [
+        'id',
+        'title',
+        'created_at',
+        'test_content'
+      ],
+      include: [
+        // include the Comment model here:
+        {
+          model: User,
+          attributes: ['username']
+        },
+        {
+          model: Comment,
+          attributes: ['id', 'comment_text', 'test_id', 'user_id', 'created_at'],
+          include: {
+            model: User,
+            attributes: ['username']
+          }
         }
+      ]
     })
-    .then(dbTestData => {
+      .then(dbTestData => {
         if (!dbTestData) {
-            res.status(404).json({ message: 'No test found with this id' });
-            return;
+          res.status(404).json({ message: 'No test found with this id' });
+          return;
         }
         res.json(dbTestData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+router.post('/', withAuth, (req, res) => {
+    Test.create({
+      title: req.body.title,
+      test_content: req.body.post_content,
+      user_id: req.session.user_id
     })
-    .catch(err => {
+      .then(dbTestData => res.json(dbTestData))
+      .catch(err => {
         console.log(err);
         res.status(500).json(err);
       });
 });
 
-// Delete a test
-router.delete('/:id', withAuth, (req, res) => {
-    Test.destroy({
+router.put('/:id', withAuth, (req, res) => {
+    Test.update({
+        title: req.body.title,
+        test_content: req.body.test_content
+      },
+      {
         where: {
-            id: req.params.id
+          id: req.params.id
         }
+      })
+      .then(dbTestData => {
+        if (!dbTestData) {
+          res.status(404).json({ message: 'No test found with this id' });
+          return;
+        }
+        res.json(dbTestData);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+  });
+
+  router.delete('/:id', withAuth, (req, res) => {
+    Test.destroy({
+      where: {
+        id: req.params.id
+      }
     })
       .then(dbTestData => {
-          if (!dbTestData) {
-              res.status(404).json({ message: 'No test found with this id' });
-              return;
-          }
-          res.json(dbTestData);
-    })
+        if (!dbTestData) {
+          res.status(404).json({ message: 'No test found with this id' });
+          return;
+        }
+        res.json(dbTestData);
+      })
       .catch(err => {
-          console.log(err);
-          res.status(500).json(err);
+        console.log(err);
+        res.status(500).json(err);
       });
-});
+  });
 
-module.exports = router;
+  module.exports = router;
+
+
+
+

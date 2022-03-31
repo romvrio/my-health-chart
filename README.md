@@ -4,13 +4,10 @@
 [View License](https://opensource.org/licenses/MIT) 
  
  # GitHub Repository Link
- https://github.com/romvrio/my-health-chart.git
+ https://github.com/Jaswal1p/my-health-chart.git
 
  # Heroku Deployed Link
- 
-
- # Video link
- 
+ https://myhealth-chart.herokuapp.com/
 
  # Table of Contents
  * [Installation](#installation)
@@ -21,13 +18,33 @@
  * [Questions](#questions)
  
  # Description
- 
+ This is a colloborative full stack application that we thought of and designed from a patient's perspective in taking charge of their own health by focusing on prevetive care. This application primarily focuses on screening tests and can significantl improve patient's understanding, involvment and timeliness of screening tests like: 
+
+  1. Low dose Lung CT scan.
+  2. Mammogram.
+  3. Heart/Coronary calcium scoring.
+  4. Colonoscopy. 
+  5. Blood Cholesterol.
+
+ This is to effect appropriate change in lifestyles, corrective actions and early management of problems before they cause serious morbidity. 
+
+ This application has robust backend built with server, database, advanced APIs with CRUD methods. Project was developed in MVC principles with separation of concerns. Although group members had dominant area of work, every one pitched in to backend as well as frontend with small to big contributions.
+
+ Our future direction will be to develop built in robust communication tool with the use of bidrectional comments chain under each test card. This is work in progress.
+
+ We also would like to create a way in the application for patient to upload their medical history, prior/outside health documents and all checkin related paperwork.
+
+ And finally It would be nice to someday develop way for patient to enter their insurance and payment information, in the privacy of their homes, instaed of creating/copying and manually entering that sensitive data at healthcare facility.
+
+ We would also like to develop homepage into a basic information hub for these screeing tests.   
 
 
  # Screenshots
    ![ScreenshotAllRoutes](https://user-images.githubusercontent.com/92233527/157668875-416988d5-e69e-4ef5-9946-34a5b5ffdd6e.png)
 
-   ![ScreenshotHomePage](https://user-images.githubusercontent.com/92233527/157669080-a7b8b274-c9c4-4ba7-8ffb-bf0adb7ce8d9.png)
+  ![ScreenshotFinalHome](https://user-images.githubusercontent.com/92233527/158035321-a26f7181-2082-4d6f-b6bf-c7091f8b6ed9.png)
+
+  ![ScreenshotFinal](https://user-images.githubusercontent.com/92233527/158035351-7ec20c26-d70b-4f63-ae1f-7353a699eeeb.png)
 
 
  # Installation

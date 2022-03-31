@@ -32,7 +32,7 @@ router.get("/", withAuth, (req, res) => {
         ]
     })
         .then((dbTestData) => {
-            const tests = dbTestData.map(post => post.get({ plain: true }));
+            const tests = dbTestData.map(test => test.get({ plain: true }));
             res.render('dashboard', { tests, loggedIn: true });
         })
         .catch((err) => {
@@ -70,15 +70,15 @@ router.get('/edit/:id', withAuth, (req, res) => {
     })
       .then(dbTestData => {
         if (!dbTestData) {
-          res.status(404).json({ message: 'No post found with this id' });
+          res.status(404).json({ message: 'No test found with this id' });
           return;
         }
   
         // serialize the data
-        const post = dbTestData.get({ plain: true });
+        const test = dbTestData.get({ plain: true });
 
         res.render('edit-test', {
-            post,
+            test,
             loggedIn: true
             });
       })

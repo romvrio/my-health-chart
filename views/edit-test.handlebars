@@ -1,23 +1,27 @@
+<article>
+  <a href="/dashboard" class="is-pulled-right"> &larr; back to dashboard</a>
+  <h2 class="title mt-5">edit test</h2><hr>
+  <form class="edit-test-form">
+    <div>
+        <label for="test-title">test title:</label>
+      <input class="input" name="test-title" type="text" value="{{test.title}}" />
+    </div>
+    <div>
+        <label for="test-content">test content:</label>
+      <input class="textarea" name="test-content" type="text" value="{{test.test_content}}"/>
+    </div>
+    <div class="is-pulled-right">
+       created by you on {{format_date test.created_at}}
+      |
+      <a href="/test/{{test.id}}">{{test.comments.length}} {{format_plural "comment" test.comments.length}}</a>
+    </div>
+    <button type="submit" class="button is-success">save test</button>
+    <button type="button" class="button is-danger delete-test-btn">delete test</button>
+  </form>
+</article>
 
-<h1 style="Padding-left: 200px">Edit Test</h1>
+{{> comments test.comments}}
 
-<form class="Edit-Test">
-  <div>
-    <label for="Test-Title" style="margin-left: 142px">Test Title:</label>
-    <input type="text" style="padding: 10 50px" id="Test-Title" />
-  </div>
-  <br>
-  <div>
-    <label for="Test-Content" style="margin-left: 120px">Test-Content:</label>
-    <input type="Test-Content" style="padding: 50 50 50 50px" id="Test Content" />
-  </div>
-  <div>
-    <button style="margin-left: 100px"type="Save-Post">Save Post</button>
-  </div>
-  <br>
-  <div>
-  <button  style="margin-left: 100px" type="Delete-Post">Delete Post</button>
-  <div>
-</form>
-
-
+<script src="/javascript/edit-test.js"></script>
+<script src="/javascript/delete-test.js"></script>
+<script src="/javascript/comment.js"></script>
